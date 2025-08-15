@@ -1,4 +1,4 @@
-import { Transport, LogEntry } from "../logger.js";
+import { Transport, LogEntry } from "../logger";
 
 export class ConsoleTransport implements Transport {
     log(entry: LogEntry): void {
@@ -8,15 +8,20 @@ export class ConsoleTransport implements Transport {
         prefix += "[" + entry.level.toUpperCase() + "]";
 
         if (entry.level === "DEBUG") {
-            console.log(prefix, entry.message);
-            if (entry.meta) console.dir(entry.meta, { depth: null });
+            const objIndex = entry.data.findIndex((d) => typeof d === "object");
+            if (objIndex >= 0) {
+                const before = entry.data.slice(0, objIndex);
+                const after = entry.data.slice(objIndex);
+                console.log(prefix, ...before);
+                for (const data of after) {
+                    if (typeof data === "object") console.dir(data, { depth: null });
+                    else console.log(data);
+                }
+                console.log("[DEBUG];");
+            } else {
+                console.log(prefix, ...entry.data);
+            }
         } else
-            console.log(prefix, entry.message, entry.meta ?? "");
-    }
-
-    debug(entry: LogEntry, ...any: any): Promise<void> | void {
-        this.log(Object.assign(entry, { meta: any[0] }));
-        for (const data of any.slice(1)) console.dir(data, { depth: null });
-        console.log("[DEBUG];");
+            console.log(prefix, ...entry.data);
     }
 }

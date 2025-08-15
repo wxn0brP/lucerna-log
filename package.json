@@ -27,27 +27,29 @@
 	],
 	"dependencies": {},
 	"peerDependencies": {
-		"@wxn0brp/db": ">=0.7.1"
+		"@wxn0brp/db-core": ">=0.1.5"
 	},
 	"peerDependenciesMeta": {
-		"@wxn0brp/db": {
+		"@wxn0brp/db-core": {
 			"optional": true
 		}
 	},
 	"devDependencies": {
-		"@wxn0brp/db": ">=0.7.1",
-		"@types/node": "^22.14.0",
+		"@types/node": "^24.3.0",
+		"@wxn0brp/db": "0.30.0",
 		"tsc-alias": "^1.8.16",
-		"typescript": "^5.2.2"
+		"typescript": "^5.9.2"
 	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"default": "./dist/index.js",
+			"import": "./dist/index.js"
 		},
-		"./transports/*": {
-			"types": "./dist/transports/*.d.ts",
-			"default": "./dist/transports/*.js"
+		"./*": {
+			"types": "./dist/*.d.ts",
+			"default": "./dist/*.js",
+			"import": "./dist/*.js"
 		}
 	}
 }

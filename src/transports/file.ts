@@ -1,10 +1,10 @@
 import { appendFileSync, mkdirSync } from "fs";
-import { Transport, LogEntry } from "../logger";
-import * as path from "path";
+import { dirname } from "path";
+import { LogEntry, Transport } from "../logger";
 
 export class FileTransport implements Transport {
     constructor(private filePath: string = "./logs.txt") {
-        mkdirSync(path.dirname(this.filePath), { recursive: true });
+        mkdirSync(dirname(this.filePath), { recursive: true });
     }
 
     log(entry: LogEntry) {
@@ -13,11 +13,7 @@ export class FileTransport implements Transport {
         prefix += "[" + entry.timestamp + "] "
         prefix += "[" + entry.level.toUpperCase() + "]";
 
-        const logLine = `${prefix} ${entry.message} ${entry.meta ? JSON.stringify(entry.meta) : ""}\n`;
+        const logLine = `${prefix} ${entry.data.map((d) => typeof d === "object" ? JSON.stringify(d) : d.toString()).join(" ")}\n`;
         appendFileSync(this.filePath, logLine);
-    }
-
-    debug(entry: LogEntry, ...any: any): void {
-        for (const data of any) this.log(Object.assign(entry, { meta: data }));
     }
 }

@@ -11,9 +11,8 @@ export type LogLevelNameLowerCase = Lowercase<LogLevelName>;
 
 export interface LogEntry {
     level: LogLevelName;
-    message: string;
+    data: any[];
     timestamp: string;
-    meta?: Record<string, any>;
     loggerName?: string;
 }
 
@@ -25,7 +24,6 @@ export interface LoggerOptions {
 
 export interface Transport {
     log(entry: LogEntry): Promise<void> | void;
-    debug(entry: LogEntry, ...any: any): Promise<void> | void;
 }
 
 export class Logger {
@@ -35,7 +33,7 @@ export class Logger {
 
     constructor(options: LoggerOptions = {}) {
         this.transports = options.transports ?? [new ConsoleTransport()],
-        this.loggerName = options.loggerName ?? "";
+            this.loggerName = options.loggerName ?? "";
         if (options.logLevel) {
             const logLevel = options.logLevel.toUpperCase() as LogLevelName;
             if (typeof LogLevel[logLevel] === "number") this.logLevel = LogLevel[logLevel];
@@ -44,45 +42,37 @@ export class Logger {
         else this.logLevel = LogLevel.ERROR;
     }
 
-    private createEntry(level: LogLevelName, message: string, meta?: Record<string, any>): LogEntry {
+    private createEntry(level: LogLevelName, any: any[]): LogEntry {
         return {
             level,
-            message,
             timestamp: new Date().toISOString(),
-            meta,
+            data: any,
             loggerName: this.loggerName
         }
     }
 
-    private async log(level: LogLevel, message: string, meta?: Record<string, any>) {
+    private async log(level: LogLevel, any: any[]) {
         if (level > this.logLevel) return;
 
-        const entry = this.createEntry(LogLevel[level] as any, message, meta);
+        const entry = this.createEntry(LogLevel[level] as any, any);
         for (const transport of this.transports) {
             await transport.log(entry);
         }
     }
 
-    debug(msg: string, meta?: Record<string, any>) {
-        return this.log(LogLevel.DEBUG, msg, meta);
+    debug(...any: any[]) {
+        return this.log(LogLevel.DEBUG, any);
     }
 
-    info(msg: string, meta?: Record<string, any>) {
-        return this.log(LogLevel.INFO, msg, meta);
+    info(...any: any[]) {
+        return this.log(LogLevel.INFO, any);
     }
 
-    warn(msg: string, meta?: Record<string, any>) {
-        return this.log(LogLevel.WARN, msg, meta);
+    warn(...any: any[]) {
+        return this.log(LogLevel.WARN, any);
     }
 
-    error(msg: string, meta?: Record<string, any>) {
-        return this.log(LogLevel.ERROR, msg, meta);
-    }
-
-    async dd(...any: any) {
-        const entry = this.createEntry("DEBUG", "");
-        for (const transport of this.transports) {
-            await transport.debug(entry, ...any);
-        }
+    error(...any: any[]) {
+        return this.log(LogLevel.ERROR, any);
     }
 }
