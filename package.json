@@ -5,9 +5,10 @@
 	"types": "dist/index.d.ts",
 	"author": "wxn0brP",
 	"license": "MIT",
+	"homepage": "https://github.com/wxn0brP/lucerna-log",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wxn0brP/lucerna-log"
+		"url": "https://github.com/wxn0brP/lucerna-log.git"
 	},
 	"keywords": [
 		"logger",
@@ -25,9 +26,8 @@
 	"files": [
 		"dist"
 	],
-	"dependencies": {},
 	"peerDependencies": {
-		"@wxn0brp/db-core": ">=0.1.5"
+		"@wxn0brp/db-core": "*"
 	},
 	"peerDependenciesMeta": {
 		"@wxn0brp/db-core": {
@@ -35,10 +35,10 @@
 		}
 	},
 	"devDependencies": {
-		"@types/node": "^24.3.0",
-		"@wxn0brp/db": "0.30.0",
-		"tsc-alias": "^1.8.16",
-		"typescript": "^5.9.2"
+		"@types/node": "*",
+		"@wxn0brp/db": "0.40.0",
+		"tsc-alias": "*",
+		"typescript": "*"
 	},
 	"exports": {
 		".": {
