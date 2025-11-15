@@ -3,13 +3,13 @@
 A lightweight, modular logging utility for TypeScript/JavaScript with pluggable transport support.  
 Designed to be simple, extensible, and dependency-free — ideal for projects where existing logging libraries are too complex or too heavy.
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install @wxn0brp/lucerna-log
 ```
 
-## ✨ Features
+## Features
 
 * Minimal core (\~5 files)
 * Built-in transports: **console**, **file**, **ValtheraDB**
@@ -18,7 +18,11 @@ npm install @wxn0brp/lucerna-log
 * Works in any Node.js or server-side environment
 * No runtime dependencies (except peer deps for optional transports)
 
-## 🚀 Quick Start
+## DOCS
+
+See [docs](https://wxn0brp.github.io/lucerna-log/).
+
+## Quick Start
 
 ```ts
 import { Logger, ConsoleTransport } from "@wxn0brp/lucerna-log";
@@ -36,7 +40,7 @@ logger.error("Token invalid", { token: "..." });
 logger.dd({ rawRequest });
 ```
 
-## 🧱 Logger API
+## Logger API
 
 ### Constructor
 
@@ -64,7 +68,7 @@ logger.dd(obj1, obj2, "anything else");
 // Passthrough to transport.debug(...)
 ```
 
-## 🔌 Built-in Transports
+## Built-in Transports
 
 ### `ConsoleTransport` (default)
 
@@ -96,7 +100,7 @@ new ValtheraDBTransport(
 )
 ```
 
-## 🔧 Custom Transport Interface
+## Custom Transport Interface
 
 You can define your own transport by implementing:
 
@@ -107,7 +111,7 @@ interface Transport {
 }
 ```
 
-## 📘 Log Levels
+## Log Levels
 
 | Level | Value |
 | ----- | ----- |
@@ -118,13 +122,17 @@ interface Transport {
 
 Logging below the configured threshold will be ignored.
 
-## 💡 Design Principles
+## Design Principles
 
 * Clear separation: logger vs output handling
 * Extendable with minimal overhead
 * Focused on log structure, not formatting
 * Suitable for microservices, CLIs, and embedded runtimes
 
-## 📜 License
+## License
 
-MIT © [wxn0brP](https://github.com/wxn0brP)
+MIT [License](LICENSE)
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit pull requests.
