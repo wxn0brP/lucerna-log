@@ -1,0 +1,52 @@
+{
+  "name": "@wxn0brp/lucerna-log",
+  "version": "0.2.2",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "wxn0brP",
+  "license": "MIT",
+  "homepage": "https://github.com/wxn0brP/lucerna-log",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxn0brP/lucerna-log.git"
+  },
+  "keywords": [
+    "logger",
+    "logging",
+    "minimal",
+    "transport",
+    "valthera",
+    "structured",
+    "modular",
+    "typescript"
+  ],
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@wxn0brp/db-core": "*"
+  },
+  "peerDependenciesMeta": {
+    "@wxn0brp/db-core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@wxn0brp/db": "^0.40.2",
+    "tsc-alias": "*",
+    "typescript": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js",
+      "import": "./dist/*.js"
+    }
+  }
+}
