@@ -38,7 +38,7 @@
         "@types/node": "*",
         "@wxn0brp/db": "~0.90.1",
         "tsc-alias": "*",
-        "typescript": "*"
+        "typescript": "^5"
     },
     "exports": {
         ".": {
