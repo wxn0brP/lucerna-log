@@ -1,7 +1,8 @@
 # @wxn0brp/lucerna-log
 
 A lightweight, modular logging utility for TypeScript/JavaScript with pluggable transport support.  
-Designed to be simple, extensible, and dependency-free — ideal for projects where existing logging libraries are too complex or too heavy.
+Designed to be simple, extensible, and dependency-free -
+ideal for projects where existing logging libraries are too complex or too heavy.
 
 ## Installation
 
@@ -11,7 +12,7 @@ npm install @wxn0brp/lucerna-log
 
 ## Features
 
-* Minimal core (\~5 files)
+* Minimal core
 * Built-in transports: **console**, **file**, **ValtheraDB**
 * Fully extensible transport system
 * Structured log entries with metadata support
